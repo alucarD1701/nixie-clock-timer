@@ -1,30 +1,21 @@
 body {
     background: #191919;
-}
-
-a.nixie {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    font-size: 20px;
-    text-decoration: none;
-    margin: 20px;
-    color: rgba(255, 255, 255, 0.35);
-    transition: .2s ease all;
-    font-family: 'Lato', sans-serif;
-}
-
-a.nixie:hover {
-    filter: brightness(.75);
+	display: flex;
+	justify-content: center;
+	width: 1920px;
+	height: 1080px;
+	margin: 0;
+	overflow: hidden;
 }
 
 .clock {
-    color: rgba(50, 50, 50, 0.35);
+    color: rgba(50, 50, 50, 0.15);
     display: block;
-    margin: 20vh auto;
+    margin: auto auto;
     text-align: center;
     font-family: 'Lato', sans-serif;
     font-size: 100px;
+	transform: scale(5);
 }
 
 .clock p.separator,
@@ -47,7 +38,6 @@ a.nixie:hover {
     margin-top: 20px;
 }
 
-a.nixie:hover,
 .clock p.separator,
 .clock section p.active {
     color: #FFE548;

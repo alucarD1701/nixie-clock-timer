@@ -1,13 +1,16 @@
-const hours = document.querySelector('.hours');
+//const hours = document.querySelector('.hours');
 const mins = document.querySelector('.mins');
 const secs = document.querySelector('.secs');
+const countDownDate = new Date("Feb 21, 2020 00:00:00");
+var video = document.getElementById('video');
 
 function getTime() {
     const now = new Date();
+	const distance = countDownDate - now;
     return {
-        hours: now.getHours() <= 9 ? `0${now.getHours()}` : `${now.getHours()}`,
-        mins: now.getMinutes() <= 9 ? `0${now.getMinutes()}` : `${now.getMinutes()}`,
-        secs: now.getSeconds() <= 9 ? `0${now.getSeconds()}` : `${now.getSeconds()}`
+		//hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) <= 9 ? `0${Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}` : `${Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}`,
+		mins: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) <= 9 ? `0${Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))}` : `${Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))}`,
+		secs: Math.floor((distance % (1000 * 60)) / 1000) <= 9 ? `0${Math.floor((distance % (1000 * 60)) / 1000)}` : `${Math.floor((distance % (1000 * 60)) / 1000)}`
     }
 }
 
@@ -22,11 +25,15 @@ function setDigits(section, digit) {
 
 function tick() {
     const time = getTime();
-    setDigits(hours, time.hours);
+    //setDigits(hours, time.hours);
     setDigits(mins, time.mins);
     setDigits(secs, time.secs);
+	if ((time.mins <= 0) && (time.secs <= 0)) {
+		clearInterval(timer);
+		//video.play();
+		//video.muted = false;
+	}
 }
 
 tick();
-
-setInterval(tick, 1000);
+var timer = setInterval(tick, 1000);
